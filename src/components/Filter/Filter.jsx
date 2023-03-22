@@ -1,27 +1,22 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
-import './Filter.css';
+import {
+  Input,
+  Label,
+  Container,
+} from 'components/ContactForm/ContactForm.styled';
 
-export class Filter extends Component {
-  handlerChange = e => {
-    const filteredValue = e.currentTarget.value;
-    this.props.changeFilter(filteredValue);
-  };
+export const Filter = ({ filterValue, onValueChange }) => {
+  return (
+    <Container>
+      <Label htmlFor="">
+        Find contact by name
+        <Input type="text" value={filterValue} onChange={onValueChange} />
+      </Label>
+    </Container>
+  );
+};
 
-  render() {
-    return (
-      <label className="FilterLabel" htmlFor="">
-        Find contacts by name
-        <input
-          className="FilterInput"
-          type="text"
-          name="name"
-          onChange={this.handlerChange}
-        />
-      </label>
-    );
-  }
-}
 Filter.propTypes = {
-  changeFilter: PropTypes.func.isRequired,
+  filterValue: PropTypes.string.isRequired,
+  onValueChange: PropTypes.func.isRequired,
 };
